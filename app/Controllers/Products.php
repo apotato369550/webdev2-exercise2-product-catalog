@@ -68,4 +68,29 @@ class Products extends BaseController
 
         return redirect()->to('/products');
     }
+
+    public function edit($id) {
+        $product = $this->productModel->find($id);
+        return view('/products/edit', ['product' => $product]);
+    }
+
+    public function update($id) {
+        $validation = \Config\Services::validation();
+        $rules = [
+            'name' => 'required|min_length[2]',
+            'price' => 'required|decimal|greater_than[0]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $this->productModel->update($id, [
+            'name' => $this->request->getPost('name'),
+            'price' => $this->request->getPost('price')
+        ]);
+
+        session()->setFlashdata('success', 'Product updated successfully');
+        return redirect()->to('/products');
+    }
 }
