@@ -71,6 +71,7 @@ class Products extends BaseController
 
     public function edit($id) {
         $product = $this->productModel->find($id);
+        // change $product to ['product', => $product]
         return view('/products/edit', ['product' => $product]);
     }
 

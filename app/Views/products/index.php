@@ -177,6 +177,10 @@
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
+                                <form method="get" action="<?= base_url('products/edit/' . $product['id']) ?>" style="display: inline;">
+                                    <?= csrf_field() ?>
+                                    <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
