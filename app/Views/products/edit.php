@@ -158,7 +158,7 @@
         <?php endif; ?>
         
         <!-- Product Form -->
-        <form action="<?= base_url('products/store') ?>" method="post">
+        <form action="<?= base_url('products/update/'.$product['id']) ?>" method="post">
             <?= csrf_field() ?>
             
             <div class="form-group">
